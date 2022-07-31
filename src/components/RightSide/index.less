@@ -1,0 +1,68 @@
+.right-side {
+    width: 350px;
+    height: 100%;
+    padding: 10px;
+    box-shadow: -2px 4px 6px 5px #00000008;
+    border-radius: 3px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .empty {
+        margin-top: 350px;
+        align-self: center;
+    }
+
+    .classify {
+        height: 90%;
+
+        .one-set {
+            height: 90%;
+            margin-top: 20px;
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+
+        .classify-props {
+            margin-bottom: 20px;
+
+            .prop-divider {
+                color: rgb(0, 128, 0);
+                font-weight: 700;
+                background-color: rgb(239, 241, 244);
+                border-radius: 3px;
+            }
+
+            .props-module {
+
+                .props-single {
+                    margin-bottom: 10px;
+                    display: flex;
+                    align-items: center;
+
+                    .props-title {
+                        width: 150px;
+                        margin: 0 10px;
+                        word-break: keep-all;
+                    }
+
+                    .input {
+                        flex-grow: 2;
+                    }
+                }
+
+                .event-select {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .del-comp {
+        width: 80%;
+        align-self: center;
+        margin-bottom: 15px;
+        border-radius: 5px;
+    }
+}

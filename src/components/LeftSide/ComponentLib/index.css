@@ -1,0 +1,56 @@
+.component-lib {
+  width: 320px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -350px;
+  z-index: -1;
+  opacity: 0;
+  user-select: none;
+  transition: all 0.3s;
+  background-color: #ffffff;
+}
+.component-lib .one-set {
+  height: 90%;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #999;
+  overflow-y: auto;
+}
+.component-lib .ant-row {
+  margin-bottom: 20px;
+}
+.component-lib .libs-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.component-lib .el-comp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 6px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  position: relative;
+  border: 1px solid #ededed;
+  transition: 0.4s;
+}
+.component-lib .el-comp::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  opacity: 0.1;
+}
+.component-lib .el-comp:hover {
+  box-shadow: -1px 2px 8px 0px #0000003d;
+}
+.active {
+  left: 50px;
+  opacity: 1;
+}

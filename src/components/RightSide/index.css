@@ -1,0 +1,55 @@
+.right-side {
+  width: 350px;
+  height: 100%;
+  padding: 10px;
+  box-shadow: -2px 4px 6px 5px #00000008;
+  border-radius: 3px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.right-side .empty {
+  margin-top: 350px;
+  align-self: center;
+}
+.right-side .classify {
+  height: 90%;
+}
+.right-side .classify .one-set {
+  height: 90%;
+  margin-top: 20px;
+  padding-top: 20px;
+  overflow-y: auto;
+}
+.right-side .classify .classify-props {
+  margin-bottom: 20px;
+}
+.right-side .classify .classify-props .prop-divider {
+  color: #008000;
+  font-weight: 700;
+  background-color: #eff1f4;
+  border-radius: 3px;
+}
+.right-side .classify .classify-props .props-module .props-single {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.right-side .classify .classify-props .props-module .props-single .props-title {
+  width: 150px;
+  margin: 0 10px;
+  word-break: keep-all;
+}
+.right-side .classify .classify-props .props-module .props-single .input {
+  flex-grow: 2;
+}
+.right-side .classify .classify-props .props-module .event-select {
+  width: 100%;
+}
+.right-side .del-comp {
+  width: 80%;
+  align-self: center;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}

@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(237, 239, 243);
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+}
+
+.app {
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    height: calc(100% - 52px);
+    display: flex;
+}
+
+// tab
+.tab {
+    width: 100%;
+    height: 48px;
+    padding: 0 10px;
+    margin-bottom: 3px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+
+    h4 {
+        margin-bottom: 0;
+    }
+
+    .device {
+        list-style-type: none;
+        display: flex;
+
+        li {
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .high {
+            background-color: rgb(242, 242, 242);
+        }
+
+        .ipad {
+            transform: scale(0.95) rotate(270deg);
+        }
+
+        .cur-screen {
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(242, 242, 242);
+        }
+    }
+
+    ul {
+        margin-bottom: 0;
+
+        button {
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+    }
+
+}
