@@ -4,6 +4,6 @@
   background-color: #fff;
   position: relative;
 }
-.preview * {
+.preview > * {
   position: absolute;
 }
