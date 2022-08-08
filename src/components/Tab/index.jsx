@@ -2,9 +2,11 @@ import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Typography, Tooltip, Tag, Button, message } from 'antd'
 import { DesktopOutlined, MobileOutlined } from '@ant-design/icons'
+import combineAsyncError from 'combine-async-error'
 
 import store from '../../Store'
 import context from '../../Context'
+import req from '../../apis/req'
 
 import './index.css'
 
@@ -15,6 +17,21 @@ const TooltipTemp = props => <Tooltip placement="bottom" {...props}></Tooltip>
 const Tab = () => {
     const [curScreen, setCurScreen] = useState(screen.pc)
     const { setCanvasWidth, editor } = useContext(context)
+    const [exportEditor, setExportEditor] = useState(false)
+    const handleExport = () => {
+        if (!editor.length) {
+            message.error('您不能够导出一个空页面')
+            return
+        }
+        const args = ['http://localhost:9999/export', `editor=${JSON.stringify(editor)}`]
+        const acc = data => {
+            // data.result.data[0].msg = { flag, text, url }
+            console.log('导出数据', data)
+            setExportEditor(false)
+        }
+        combineAsyncError([{ func: req.get, args }], { acc })
+        setExportEditor(true)
+    }
     const change = s => {
         return () => {
             setCanvasWidth(screen[s])
@@ -27,7 +44,7 @@ const Tab = () => {
     }
     return (
         <div className="tab">
-            <Title level={4}>Low-Code</Title>
+            <Title>low-code</Title>
             <ul className="device"
             >
                 <li className="high" onClick={change('pc')}>
@@ -50,12 +67,24 @@ const Tab = () => {
                 </li>
             </ul>
             <ul>
-                <Button type="primary">
-                    <Link
-                        to={{ pathname: "/preview", state: editor }}
-                        onClick={autoSaveStore}
-                    >预览</Link>
-                </Button>
+                <li>
+                    <Button
+                        type="primary"
+                        disabled={exportEditor}
+                        onClick={handleExport}
+                    >导出</Button>
+                </li>
+                <li>
+                    <Button
+                        type="primary"
+                        disabled={exportEditor}
+                    >
+                        <Link
+                            to={{ pathname: "/preview", state: editor }}
+                            onClick={autoSaveStore}
+                        >预览</Link>
+                    </Button>
+                </li>
             </ul>
         </div>
     )

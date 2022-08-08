@@ -17,10 +17,4 @@ const toEvent = code => {
         }
     }
 }
-const checkBool = value => [
-    [/^true$/, true],
-    [/^false$/, false],
-    [/.*/g, value]
-]
-const transformType = value => checkBool(value).find(([reg]) => reg.test(value))[1]
-export { Slot, processEvents, toEvent, transformType }
+export { Slot, processEvents, toEvent }
