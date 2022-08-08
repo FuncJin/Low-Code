@@ -4,6 +4,7 @@ const archiver = require('archiver')
 const outputDir = './zip'
 
 const compress = fileName => new Promise((resolve, rejected) => {
+    if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir)
     const output = fs.createWriteStream(`${outputDir}/${fileName}`)
     const archive = archiver('zip', { zlib: { level: 9 } })
     output.on('close', resolve).on('error', rejected)
