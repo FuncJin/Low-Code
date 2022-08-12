@@ -5,23 +5,30 @@
     box-shadow: -2px 4px 6px 5px #00000008;
     border-radius: 3px;
     background-color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
+    animation: bounce-right-side 0.7s;
 
     .empty {
         margin-top: 350px;
         align-self: center;
     }
 
+    .classify-title {
+        animation: bounce-classify-title 0.3s;
+    }
+
     .classify {
         height: 90%;
+        animation: bounce-right-side 0.7s;
 
         .one-set {
+            width: 100%;
             height: 90%;
             margin-top: 20px;
-            padding-top: 20px;
+            padding: 15px;
             overflow-y: auto;
+            position: absolute;
         }
 
         .classify-props {
@@ -57,12 +64,104 @@
                 }
             }
         }
+
+        .o-s-p {
+            animation: bounce-o-s-p 0.5s forwards;
+        }
+
+        .o-s-s-l {
+            animation: bounce-o-s-s-l 0.5s forwards;
+        }
+
+        .o-s-s-r {
+            animation: bounce-o-s-s-r 0.5s forwards;
+        }
+
+        .o-s-e {
+            animation: bounce-o-s-e 0.5s forwards;
+        }
+
     }
 
-    .del-comp {
-        width: 80%;
-        align-self: center;
-        margin-bottom: 15px;
-        border-radius: 5px;
+    .c-del {
+        text-align: center;
+
+        .del-comp {
+            width: 80%;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+    }
+}
+
+@keyframes bounce-right-side {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce-classify-title {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce-o-s-p {
+    0% {
+        opacity: 0;
+        left: 100%;
+    }
+
+    100% {
+        opacity: 1;
+        left: 0;
+    }
+}
+
+@keyframes bounce-o-s-s-l {
+    0% {
+        opacity: 0;
+        left: -100%;
+    }
+
+    100% {
+        opacity: 1;
+        left: 0;
+    }
+}
+
+@keyframes bounce-o-s-s-r {
+    0% {
+        opacity: 0;
+        left: 100%;
+    }
+
+    100% {
+        opacity: 1;
+        left: 0;
+    }
+}
+
+@keyframes bounce-o-s-e {
+    0% {
+        opacity: 0;
+        left: -100%;
+    }
+
+    100% {
+        opacity: 1;
+        left: 0;
     }
 }

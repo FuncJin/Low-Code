@@ -23,11 +23,12 @@ const Tab = () => {
             message.error('您不能够导出一个空页面')
             return
         }
+        message.success('正在进行导出，请耐心等待...')
         const args = ['http://localhost:9999/export', `editor=${JSON.stringify(editor)}`]
         const acc = data => {
-            // data.result.data[0].msg = { flag, text, url }
             console.log('导出数据', data)
             setExportEditor(false)
+            message.success('导出成功')
         }
         combineAsyncError([{ func: req.get, args }], { acc })
         setExportEditor(true)
@@ -71,6 +72,7 @@ const Tab = () => {
                     <Button
                         type="primary"
                         disabled={exportEditor}
+                        /*  disabled={true} */
                         onClick={handleExport}
                     >导出</Button>
                 </li>

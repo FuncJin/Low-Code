@@ -11,6 +11,8 @@
   box-shadow: 4px 4px 8px 2px #0000000f;
   border-radius: 3px;
   background-color: #ffffff;
+  left: -48px;
+  animation: bounce-left-side 0.5s 0.3s forwards;
 }
 .left-side ul {
   list-style-type: none;
@@ -25,4 +27,13 @@
 }
 .left-side ul li:hover {
   background-color: #ece9e9;
+}
+@keyframes bounce-left-side {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    left: 0;
+  }
 }

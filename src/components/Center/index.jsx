@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useRef } from 'react'
 import { message } from 'antd'
 
 import context from '../../Context'
@@ -12,6 +12,7 @@ const Center = () => {
     const [lastPosition, setLastPosition] = useState({ top: 0, left: 0 })
     const [handOver, setHandOver] = useState(null)
     const [selected, setSelected] = useState(false)
+    const canvasRef = useRef()
     const { flag, key, originStyle } = freshEl
     const handleMouseDown = e => {
         const path = e.nativeEvent.path
@@ -71,6 +72,7 @@ const Center = () => {
         <div className="center" >
             <div
                 className="canvas"
+                ref={canvasRef}
                 style={{ width: canvasWidth }}
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
@@ -80,7 +82,17 @@ const Center = () => {
                     setHandOver={setHandOver}
                     text={originStyle?.children}
                 />
-                {selected ? <div className="shield"></div> : null}
+                {
+                    selected ? (
+                        <div
+                            className="shield"
+                            style={{
+                                width: `${canvasRef.current.scrollWidth}px`,
+                                height: `${canvasRef.current.scrollHeight}px`
+                            }}
+                        ></div>
+                    ) : null
+                }
                 {
                     editor.map((v, i) => (
                         <Slot
