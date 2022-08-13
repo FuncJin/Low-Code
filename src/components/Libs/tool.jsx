@@ -41,4 +41,22 @@ const antMsg = {
     },
 }
 
-export { Slot, processEvents, toEvent, transformType, antMsg }
+// 用于导出时对editor进行处理
+const needDelKeys = ['flag', 'key', 'options']
+const needCheckKeys = ['style', 'events']
+const delKeys = obj => {
+    const objKeys = Object.keys(obj)
+    objKeys.forEach(k => { if (!obj[k]) delete obj[k] })
+}
+const cutEditor = editor => {
+    const genuineData = []
+    editor.forEach(preObj => {
+        const nextObj = { ...preObj }
+        needDelKeys.forEach(k => delete nextObj[k])
+        needCheckKeys.forEach(k => delKeys(nextObj[k]))
+        genuineData.push(nextObj)
+    })
+    return genuineData
+}
+
+export { Slot, processEvents, toEvent, transformType, antMsg, cutEditor }

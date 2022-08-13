@@ -7,7 +7,7 @@ import combineAsyncError from 'combine-async-error'
 import store from '../../Store'
 import context from '../../Context'
 import req from '../../apis/req'
-import { antMsg } from '../Libs/tool'
+import { antMsg, cutEditor } from '../Libs/tool'
 
 import './index.css'
 
@@ -24,7 +24,7 @@ const Tab = () => {
         if (!editor.length) return antMsg.error('您不能够导出一个空页面')
         antMsg.success('正在准备导出')
         setTimeout(antMsg.success, 4000, '这可能会需要几分钟，请耐心等待');
-        const args = [`editor=${JSON.stringify(editor)}`]
+        const args = [`editor=${JSON.stringify(cutEditor(editor))}`]
         const acc = ({ error, result }) => {
             setExportEditor(false)
             if (error) return antMsg.error(error.msg)
