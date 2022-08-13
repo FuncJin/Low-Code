@@ -1,5 +1,4 @@
 const fs = require('fs')
-const path = require('path')
 const exec = require('child_process').exec
 const { combineAsyncError } = require('combine-async-error')
 const { compress } = require('./compress')
@@ -27,7 +26,7 @@ const handleExport = (req, res) => {
             func: compress,
             args: ['compress.zip']
         }]
-        const acc = ({ error, result }) => res.send(error ? sFai : { ...sWin, url: path.resolve() + '/zip/compress.zip' })
+        const acc = ({ error, result }) => res.send(error ? sFai : { ...sWin, url: 'http://localhost:9999/zip/compress.zip' })
         combineAsyncError(queue, { acc })
     }
     fs.writeFile(url, text(editor), handle)

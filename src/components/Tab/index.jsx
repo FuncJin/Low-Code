@@ -1,12 +1,13 @@
 import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { Typography, Tooltip, Tag, Button, message } from 'antd'
+import { Typography, Tooltip, Tag, Button } from 'antd'
 import { DesktopOutlined, MobileOutlined } from '@ant-design/icons'
 import combineAsyncError from 'combine-async-error'
 
 import store from '../../Store'
 import context from '../../Context'
 import req from '../../apis/req'
+import { antMsg } from '../Libs/tool'
 
 import './index.css'
 
@@ -16,19 +17,21 @@ const TooltipTemp = props => <Tooltip placement="bottom" {...props}></Tooltip>
 
 const Tab = () => {
     const [curScreen, setCurScreen] = useState(screen.pc)
-    const { setCanvasWidth, editor } = useContext(context)
+    const { setCanvasWidth, editor, status, setStatus } = useContext(context)
     const [exportEditor, setExportEditor] = useState(false)
+    const [downloadUrl, setDownloadUrl] = useState('')
     const handleExport = () => {
-        if (!editor.length) {
-            message.error('您不能够导出一个空页面')
-            return
-        }
-        message.success('正在进行导出，请耐心等待...')
-        const args = ['http://localhost:9999/export', `editor=${JSON.stringify(editor)}`]
-        const acc = data => {
-            console.log('导出数据', data)
+        if (!editor.length) return antMsg.error('您不能够导出一个空页面')
+        antMsg.success('正在准备导出')
+        setTimeout(antMsg.success, 4000, '这可能会需要几分钟，请耐心等待');
+        const args = [`editor=${JSON.stringify(editor)}`]
+        const acc = ({ error, result }) => {
             setExportEditor(false)
-            message.success('导出成功')
+            if (error) return antMsg.error(error.msg)
+            const { url } = result[0].data.msg
+            setDownloadUrl(url)
+            setStatus(false)
+            antMsg.success('导出完毕，您现在可以下载资源了')
         }
         combineAsyncError([{ func: req.get, args }], { acc })
         setExportEditor(true)
@@ -41,7 +44,7 @@ const Tab = () => {
     }
     const autoSaveStore = () => {
         store.setItem(editor)
-        message.success('已自动保存至本地')
+        antMsg.success('已自动保存至本地')
     }
     return (
         <div className="tab">
@@ -69,12 +72,22 @@ const Tab = () => {
             </ul>
             <ul>
                 <li>
-                    <Button
-                        type="primary"
-                        disabled={exportEditor}
-                        /*  disabled={true} */
-                        onClick={handleExport}
-                    >导出</Button>
+                    {
+                        status ? (
+                            <Button
+                                type="primary"
+                                disabled={exportEditor}
+                                onClick={handleExport}
+                            >导出</Button>
+                        ) : (
+                            <Button
+                                type="primary"
+                                danger
+                            >
+                                <a href={downloadUrl} download="lowcode.zip">下载</a>
+                            </Button>
+                        )
+                    }
                 </li>
                 <li>
                     <Button

@@ -1,3 +1,5 @@
+import { message } from 'antd'
+
 const Slot = props => <>{props.render({ ...props, render: null })}</>
 // 事件处理
 const processEvents = (editor, key, name, e = {}, fn = Function.prototype) => {
@@ -24,4 +26,19 @@ const checkBool = value => [
 ]
 const transformType = value => checkBool(value).find(([reg]) => reg.test(value))[1]
 
-export { Slot, processEvents, toEvent, transformType }
+const antMsg = {
+    success: (text, flag) => {
+        if (flag) return message.success(text)
+        message.success(text)
+    },
+    error: (text, flag) => {
+        if (flag) return message.error(text)
+        message.error(text)
+    },
+    warning: (text, flag) => {
+        if (flag) return message.warning(text)
+        message.warning(text)
+    },
+}
+
+export { Slot, processEvents, toEvent, transformType, antMsg }

@@ -1,7 +1,6 @@
 {
-  "name": "low-code",
+  "name": "low-code-depend",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",

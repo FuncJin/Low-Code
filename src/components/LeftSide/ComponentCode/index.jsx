@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react'
-import { Divider, Input, Button, message } from 'antd'
+import { Divider, Input, Button } from 'antd'
 
 import context from '../../../Context'
-import { toEvent } from '../../Libs/tool'
+import { toEvent,antMsg } from '../../Libs/tool'
 
 import './index.css'
 
@@ -25,7 +25,7 @@ const ComponentCode = ({ handleContent }) => {
         })
         setEditor(editor.map(v => v.key === key ? next(v) : v))
         setCurSelectedEl(next(curSelectedEl))
-        message.success('提交成功')
+        antMsg.success('提交成功')
         handleContent('code')
     }
     return (

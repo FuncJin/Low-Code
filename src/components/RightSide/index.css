@@ -1,7 +1,6 @@
 .right-side {
   width: 350px;
   height: 100%;
-  padding: 10px;
   box-shadow: -2px 4px 6px 5px #00000008;
   border-radius: 3px;
   background-color: #ffffff;
@@ -14,10 +13,12 @@
   align-self: center;
 }
 .right-side .classify-title {
+  padding: 10px;
   animation: bounce-classify-title 0.3s;
 }
 .right-side .classify {
   height: 90%;
+  padding: 10px;
   animation: bounce-right-side 0.7s;
 }
 .right-side .classify .one-set {
@@ -66,7 +67,13 @@
   animation: bounce-o-s-e 0.5s forwards;
 }
 .right-side .c-del {
+  width: 100%;
+  padding: 5px;
   text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
 }
 .right-side .c-del .del-comp {
   width: 80%;

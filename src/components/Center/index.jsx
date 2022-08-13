@@ -1,8 +1,7 @@
 import { useState, useContext, useRef } from 'react'
-import { message } from 'antd'
 
 import context from '../../Context'
-import { Slot, processEvents } from '../Libs/tool'
+import { Slot, processEvents,antMsg } from '../Libs/tool'
 import LookMe from './LookMe'
 
 import './index.css'
@@ -32,7 +31,7 @@ const Center = () => {
     document.onmouseup = () => {
         if (!flag && !selected) return
         changePosition(lastPosition)
-        message.warning('超出有效移动范围')
+        antMsg.warning('超出有效移动范围')
     }
     const changePosition = (position, require) => {
         handOver.top(0)
