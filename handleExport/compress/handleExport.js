@@ -24,9 +24,9 @@ const handleExport = (req, res) => {
         if (!flag) return res.send(sFai)
         const queue = [{
             func: compress,
-            args: ['compress.zip']
+            args: ['lowcode.zip']
         }]
-        const acc = ({ error }) => res.send(error ? sFai : { ...sWin, url: 'http://funcjin.cn/zip/compress.zip' })
+        const acc = ({ error }) => res.send(error ? sFai : { ...sWin, url: 'http://funcjin.cn/zip/lowcode.zip' })
         combineAsyncError(queue, { acc })
     }
     fs.writeFile(url, text(editor), handle)
