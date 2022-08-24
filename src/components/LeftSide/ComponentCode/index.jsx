@@ -10,6 +10,7 @@ const { TextArea } = Input
 
 const ComponentCode = ({ handleContent }) => {
     const { editor, setEditor, curSelectedEl, setCurSelectedEl } = useContext(context)
+    // 如果某个组件的事件代码已经被添加过了，则获取它
     const getPreCode = () => {
         const preEvent = Object.keys(curSelectedEl.events)[0]
         const defaultCode = curSelectedEl.events[preEvent]?.code
@@ -21,6 +22,7 @@ const ComponentCode = ({ handleContent }) => {
         const eventName = Object.keys(events)[0]
         const next = v => ({
             ...v,
+            // 指定当前组件的事件处理函数代码(字符串的形式)
             events: { [eventName]: { fn: toEvent(code), code } }
         })
         setEditor(editor.map(v => v.key === key ? next(v) : v))

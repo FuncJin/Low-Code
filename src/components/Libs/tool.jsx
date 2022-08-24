@@ -59,4 +59,14 @@ const cutEditor = editor => {
     return genuineData
 }
 
-export { Slot, processEvents, toEvent, transformType, antMsg, cutEditor }
+// 存储画布的默认值
+const screenDefaultWidth = { pc: window.innerWidth - 350 - 48 - 10-10, ipad: '768', iphone: '375' }
+export {
+    Slot,
+    processEvents,
+    toEvent,
+    transformType,
+    antMsg,
+    cutEditor,
+    screenDefaultWidth,
+}

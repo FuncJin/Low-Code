@@ -1,5 +1,5 @@
-import { useState, useContext } from 'react'
-import { Typography, Segmented, Button } from 'antd'
+import { useState, useContext, useEffect } from 'react'
+import { Typography, Segmented, Button, Popconfirm } from 'antd'
 
 import Property from './Property'
 import Style from './Style'
@@ -28,7 +28,7 @@ const render = Comp => <Comp />
 
 const RightSide = () => {
     const [curSegmented, setCurSegmented] = useState('属性')
-    const { curSelectedEl, editor, setEditor, setCurSelectedEl } = useContext(context)
+    const { curSelectedEl, editor, setEditor, setCurSelectedEl, freshEl } = useContext(context)
     const { flag, key, options: { name } } = curSelectedEl
     const [preLeft, setPreLeft] = useState('o-s-p')
     const handleDel = () => {
@@ -42,15 +42,23 @@ const RightSide = () => {
         setPreLeft(cur ? cur[1] : belong[e].name)
         setCurSegmented(e)
     }
+    useEffect(() => {
+        // 当出现新生成的组件时，自动恢复至属性选项卡
+        return () => handleCurSegmented('属性')
+        // eslint-disable-next-line
+    }, [freshEl])
     return (
         <div className="right-side">
             {
                 !flag ? <NoneProp /> : (
                     <>
-                        <Title level={4} className="classify-title">{name}</Title>
+                        <Title level={4} className="classify-title">『{name}』组件</Title>
                         <div className="classify">
-                            <Segmented block
+                            <Segmented
+                                block
                                 options={['属性', '样式', '事件']}
+                                defaultValue="属性"
+                                value={curSegmented}
                                 onChange={e => handleCurSegmented(e)}
                             />
                             <div className={`one-set ${preLeft}`}>
@@ -58,11 +66,18 @@ const RightSide = () => {
                             </div>
                         </div>
                         <div className="c-del">
-                            <Button
-                                danger
-                                className="del-comp"
-                                onClick={handleDel}
-                            >删除</Button>
+                            <Popconfirm
+                                placement="top"
+                                title="确定要删除当前组件吗？"
+                                okText="删除"
+                                showCancel={false}
+                                onConfirm={handleDel}
+                            >
+                                <Button
+                                    danger
+                                    className="del-comp"
+                                >删除</Button>
+                            </Popconfirm>
                         </div>
                     </>
                 )

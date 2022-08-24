@@ -12,10 +12,10 @@ body {
   width: 100%;
   height: 100%;
 }
-#root .main .preview {
+#root .preview {
   position: relative;
   background-color: #fff;
 }
-#root .main .preview .static {
+#root .preview .static {
   position: absolute;
 }

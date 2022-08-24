@@ -1,0 +1,11 @@
+.p-m-show-color {
+  display: flex;
+  align-items: center;
+}
+.p-m-show-color .s-c-diamonds {
+  width: 16px;
+  height: 16px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-right: 5px;
+}

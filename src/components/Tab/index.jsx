@@ -1,30 +1,31 @@
 import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { Typography, Tooltip, Tag, Button } from 'antd'
+import { Typography, InputNumber, Button } from 'antd'
 import { DesktopOutlined, MobileOutlined } from '@ant-design/icons'
 import combineAsyncError from 'combine-async-error'
 
 import store from '../../Store'
 import context from '../../Context'
 import req from '../../apis/req'
-import { antMsg, cutEditor } from '../Libs/tool'
+import { antMsg, cutEditor, screenDefaultWidth } from '../Libs/tool'
 
 import './index.css'
 
 const { Title } = Typography
-const screen = { pc: '100%', ipad: '768px', iphone: '375px' }
-const TooltipTemp = props => <Tooltip placement="bottom" {...props}></Tooltip>
 
 const Tab = () => {
-    const [curScreen, setCurScreen] = useState(screen.pc)
-    const { setCanvasWidth, editor, status, setStatus } = useContext(context)
+    const { canvasWidth, setCanvasWidth, editor, status, setStatus } = useContext(context)
+    // 导出、预览按钮的状态
     const [exportEditor, setExportEditor] = useState(false)
+    // 下载的地址
     const [downloadUrl, setDownloadUrl] = useState('')
     const handleExport = () => {
         if (!editor.length) return antMsg.error('您不能够导出一个空页面')
         antMsg.success('正在准备导出')
-        setTimeout(antMsg.success, 4000, '这可能会需要几分钟，请耐心等待');
-        const args = [`editor=${JSON.stringify(cutEditor(editor))}`]
+        setTimeout(antMsg.success, 4000, '这可能需要1-2分钟，请耐心等待')
+        // 携带的参数
+        const args = [`/export`, `editor=${JSON.stringify(cutEditor(editor))}`]
+        // 导出完毕
         const acc = ({ error, result }) => {
             setExportEditor(false)
             if (error) return antMsg.error(error.msg)
@@ -36,38 +37,33 @@ const Tab = () => {
         combineAsyncError([{ func: req.get, args }], { acc })
         setExportEditor(true)
     }
-    const change = s => {
-        return () => {
-            setCanvasWidth(screen[s])
-            setCurScreen(screen[s])
-        }
-    }
+    const changeDevice = s => () => setCanvasWidth(screenDefaultWidth[s])
+    const handleScreen = value => setCanvasWidth(value)
     const autoSaveStore = () => {
         store.setItem(editor)
         antMsg.success('已自动保存至本地')
     }
     return (
         <div className="tab">
-            <Title>low-code</Title>
+            <Title level={4}>Low-Code</Title>
             <ul className="device"
             >
-                <li className="high" onClick={change('pc')}>
-                    <TooltipTemp title="pc">
-                        <DesktopOutlined />
-                    </TooltipTemp>
+                <li className="high" onClick={changeDevice('pc')}>
+                    <DesktopOutlined />
                 </li>
-                <li className="high ipad" onClick={change('ipad')}>
-                    <TooltipTemp title="ipad">
-                        <MobileOutlined />
-                    </TooltipTemp>
+                <li className="high ipad" onClick={changeDevice('ipad')}>
+                    <MobileOutlined />
                 </li>
-                <li className="high" onClick={change('iphone')}>
-                    <TooltipTemp title="iphone">
-                        <MobileOutlined />
-                    </TooltipTemp>
+                <li className="high" onClick={changeDevice('iphone')}>
+                    <MobileOutlined />
                 </li>
                 <li>
-                    <Tag className="cur-screen">{curScreen}</Tag>
+                    <InputNumber
+                        className="cur-screen"
+                        addonAfter="px"
+                        value={canvasWidth}
+                        onChange={handleScreen}
+                    />
                 </li>
             </ul>
             <ul>

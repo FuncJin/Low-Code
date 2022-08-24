@@ -37,7 +37,7 @@ const options = (name, more, origin, e) => {
         events
     }
 }
-const onMorePropsConfig = (v = {}) => ({ ...defaultStyleConfig, ...v })
+const onMorePropsConfig = (v = {}) => ({ ...v, ...defaultStyleConfig, })
 const defaultCompName = alias => ({ alias, inValues: { text: ['children'] } })
 const inMorePropsConfig = (v = {}) => ({ values: {}, inValues: {}, ...v })
 const backOriginStyle = (v = {}) => ({ ...v })
@@ -46,7 +46,7 @@ const definedProps = {
     basisEl: {
         Button: {
             el: processOriginComp(Button, '按钮'),
-            options: options('按钮组件', {
+            options: options('按钮', {
                 moreProps: onMorePropsConfig({ text: inMorePropsConfig(defaultCompName('按钮')) })
             }, {
                 originStyle: backOriginStyle({
@@ -73,7 +73,7 @@ const definedProps = {
         },
         Title: {
             el: processOriginComp(Title, '标题'),
-            options: options('标题组件', {
+            options: options('标题', {
                 moreProps: onMorePropsConfig({ text: inMorePropsConfig(defaultCompName('标题')) })
             }, {
                 originStyle: backOriginStyle({
@@ -120,7 +120,7 @@ const definedProps = {
     dataShow: {
         Tag: {
             el: processOriginComp(Tag, 'tag'),
-            options: options('Tag组件', {
+            options: options('Tag', {
                 moreProps: onMorePropsConfig({ text: inMorePropsConfig(defaultCompName('tag')) })
             }, {
                 originStyle: {
@@ -141,7 +141,7 @@ const definedProps = {
         },
         Avatar: {
             el: processOriginComp(Avatar, '头像'),
-            options: options('头像组件', {
+            options: options('头像', {
                 moreProps: onMorePropsConfig({ text: inMorePropsConfig(defaultCompName('头像')) })
             }),
         },

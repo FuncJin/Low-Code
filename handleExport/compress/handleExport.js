@@ -1,12 +1,15 @@
 const fs = require('fs')
 const exec = require('child_process').exec
 const { combineAsyncError } = require('combine-async-error')
+
 const { compress } = require('./compress')
 
-// 处理如何写入文件
+// 处理写入文件的路径
 const url = './src/components/Preview/editor.jsx'
 const text = editor => `const editor = ${editor};export default editor;`
-// 开启命令行
+const downloadUrl = 'https://funcjin.cn/zip/lowcode.zip'
+
+// 开启命令行 > npm run-script build
 const go = () => new Promise(resolve => {
     const args = ['npm run-script build', ['../']]
     const stdout = async err => resolve(!err)
@@ -17,7 +20,7 @@ const sFai = { flag: false, text: '导出失败' }
 const sWin = { flag: true, text: '导出成功' }
 
 const handleExport = (req, res) => {
-    const editor = req.body.editor
+    const editor = req.body.editor.replace(/^'|'$/ig, '')
     const handle = async err => {
         if (err) return res.send(sFai)
         const flag = await go()
@@ -26,7 +29,7 @@ const handleExport = (req, res) => {
             func: compress,
             args: ['lowcode.zip']
         }]
-        const acc = ({ error }) => res.send(error ? sFai : { ...sWin, url: 'http://funcjin.cn/zip/lowcode.zip' })
+        const acc = ({ error }) => res.send(error ? sFai : { ...sWin, url: downloadUrl })
         combineAsyncError(queue, { acc })
     }
     fs.writeFile(url, text(editor), handle)

@@ -1,5 +1,3 @@
-import { useRef, useState, useEffect } from 'react'
-
 import libs from '../Libs'
 import { Slot, processEvents } from '../Libs/tool'
 
@@ -15,39 +13,26 @@ const result = editor.map(v => {
 })
 
 const Preview = () => {
-    const ref = useRef()
-    const [wh, setWh] = useState({ width: '100%', height: '100%' })
-    useEffect(() => {
-        setWh({
-            width: `${ref.current.scrollWidth}px`,
-            height: `${ref.current.scrollHeight}px`,
-        })
-    }, [])
     return (
         <div
-            className="main"
-            ref={ref}
+            className="preview"
+            style={{
+                width: `${window.innerWidth}px`,
+                height: `${window.innerHeight}px`,
+            }}
         >
-            <div
-                className="preview"
-                style={{
-                    width: wh.width,
-                    height: wh.height
-                }}
-            >
-                {
-                    result.map((v, i) => (
-                        <Slot
-                            className="static"
-                            key={i}
-                            {...v.originStyle}
-                            style={{ ...v.position, ...v.style }}
-                            onClick={() => processEvents(result, i, 'onClick')}
-                            render={v.el}
-                        ></Slot>
-                    ))
-                }
-            </div>
+            {
+                result.map((v, i) => (
+                    <Slot
+                        className="static"
+                        key={i}
+                        {...v.originStyle}
+                        style={{ ...v.position, ...v.style }}
+                        onClick={() => processEvents(result, i, 'onClick')}
+                        render={v.el}
+                    ></Slot>
+                ))
+            }
         </div>
     )
 }

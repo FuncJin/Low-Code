@@ -1,6 +1,6 @@
-.main .preview {
-  background-color: #fff;
+.preview {
   position: relative;
+  background-color: #fff;
 }
 .preview > * {
   position: absolute;

@@ -1,9 +1,10 @@
 import { useContext } from 'react'
-import { Divider, Select } from 'antd'
+import { Select, Collapse } from 'antd'
 
 import context from '../../../Context'
 
 const { Option } = Select
+const { Panel } = Collapse
 
 const EventListener = () => {
     const { setEditor, editor, curSelectedEl, setCurSelectedEl } = useContext(context)
@@ -17,19 +18,29 @@ const EventListener = () => {
         setEditor(newEditor)
         setCurSelectedEl(next(curSelectedEl))
     }
-    return <div className="classify-props">
-        <Divider className="prop-divider" orientation='left' plain>添加事件</Divider>
-        <div className="props-module">
-            <Select
-                className="event-select"
-                key={events[0] || options.events[0]}
-                defaultValue={events[0] || options.events[0]}
-                onChange={selectChange}
+    return (
+        <Collapse
+            className="classify-props"
+            defaultActiveKey={[1]}
+            ghost
+        >
+            <Panel
+                header="添加事件"
+                key={1}
             >
-                {options.events.map((v, i) => <Option key={i}>{v}</Option>)}
-            </Select>
-        </div>
-    </div>
+                <div className="props-module">
+                    <Select
+                        className="event-select"
+                        key={events[0] || options.events[0]}
+                        defaultValue={events[0] || options.events[0]}
+                        onChange={selectChange}
+                    >
+                        {options.events.map((v, i) => <Option key={i}>{v}</Option>)}
+                    </Select>
+                </div>
+            </Panel>
+        </Collapse>
+    )
 }
 
 export default EventListener

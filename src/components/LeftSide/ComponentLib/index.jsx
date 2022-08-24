@@ -18,6 +18,7 @@ const ComponentLib = ({ handleContent }) => {
         const style = { width: '', height: '', ...defaultOriginCssStyle }
         const afterRender = `${v} ${C}`
         const { el, options } = comp
+        // 代表新生成的组件(从组件区派发至画布区)
         setFreshEl({
             flag: true,
             el,
@@ -47,14 +48,14 @@ const ComponentLib = ({ handleContent }) => {
                         <Panel header={v[0]} key={classifyIndex}>
                             <div className="libs-container">
                                 {
-                                    Object.keys(v[1]).map((C, oneIndex) => (
+                                    Object.keys(v[1]).map((Comp, oneIndex) => (
                                         <div
                                             className="el-comp"
                                             key={oneIndex}
                                             onMouseDown={handleMouseDown}
-                                            onMouseMove={(e) => handleMouseMove(v[1][C], v[0], C)}
+                                            onMouseMove={(e) => handleMouseMove(v[1][Comp], v[0], Comp)}
                                         >
-                                            <div>{v[1][C].el()}</div>
+                                            <div>{v[1][Comp].el()}</div>
                                         </div>
                                     ))
                                 }

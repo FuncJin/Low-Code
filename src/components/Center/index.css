@@ -3,6 +3,7 @@
   margin: 0 3px;
   padding: 5px;
   flex-grow: 2;
+  overflow: auto;
 }
 .center .canvas {
   height: 100%;
@@ -36,7 +37,7 @@
   font-weight: 700;
   border-radius: 5px;
   color: #ffffff;
-  background-color: #18b98d;
+  background-color: #3B9AE1;
   box-shadow: 0 0 11px 0px #0000004d;
 }
 .center .static {

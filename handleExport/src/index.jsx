@@ -8,4 +8,5 @@ const _vm = (
     <App />
   </React.StrictMode>
 )
+
 ReactDOM.render(_vm, document.querySelector('#root'))

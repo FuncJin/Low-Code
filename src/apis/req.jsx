@@ -1,7 +1,10 @@
+// 请求路径
 const requestUrl = 'http://localhost:9999'
+
 const xhr = new XMLHttpRequest()
-const get = (data) => new Promise(resolve => {
-    xhr.open("POST", `${requestUrl}/export`)
+
+const get = (url, data) => new Promise(resolve => {
+    xhr.open("POST", `${requestUrl}${url}`)
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
     xhr.onreadystatechange = () => {
         if (xhr.readyState !== 4) return

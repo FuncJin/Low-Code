@@ -1,15 +1,12 @@
 import { useContext, useState } from 'react'
-import { Tooltip, Popconfirm } from 'antd'
+import { Popconfirm } from 'antd'
 import {
     BuildOutlined,
-    ExclamationCircleOutlined,
     BugOutlined,
     ArrowLeftOutlined,
     ArrowRightOutlined,
     DownloadOutlined,
     ClearOutlined,
-    QuestionCircleOutlined,
-    CheckCircleOutlined,
 } from '@ant-design/icons'
 
 import context from '../../Context'
@@ -18,12 +15,12 @@ import ComponentCode from './ComponentCode'
 
 import './index.css'
 
+// 存储左栏的选项卡
 const moreContent = [
     { lib: ComponentLib },
     { code: ComponentCode },
 ]
 const render = (Comp, f) => <Comp showComp={!!Comp} handleContent={f} />
-const TooltipTemp = props => <Tooltip placement="right" {...props}></Tooltip>
 const PopconfirmTemp = props => (
     <Popconfirm
         placement="rightBottom"
@@ -40,9 +37,9 @@ const LeftSide = () => {
         handleBackEditor,
         handleForwardEditor,
         handleSaveStore,
-        handleClearStore,
-        handleReadme
+        handleClearContent,
     } = useContext(context)
+    // 切换选项卡的动画效果
     const handleContent = area => {
         const whoComp = moreContent.find(v => v[area])
         if (showComp === whoComp[area]) return setShowComp(null)
@@ -51,21 +48,17 @@ const LeftSide = () => {
     return (
         <div className="left-side">
             <ul className="components">
-                <TooltipTemp title="组件">
-                    <li onClick={() => handleContent('lib')}>
-                        <BuildOutlined />
-                    </li>
-                </TooltipTemp>
-                <TooltipTemp title="代码">
-                    <li onClick={() => handleContent('code')}>
-                        <BugOutlined />
-                    </li>
-                </TooltipTemp>
+                <li onClick={() => handleContent('lib')}>
+                    <BuildOutlined />
+                </li>
+                <li onClick={() => handleContent('code')}>
+                    <BugOutlined />
+                </li>
             </ul>
             <ul className="other-operations">
                 <li>
                     <PopconfirmTemp
-                        title={'您确定要后退一次操作吗？'}
+                        title={'确定后退一次操作吗？'}
                         onConfirm={handleBackEditor}
                     >
                         <ArrowLeftOutlined />
@@ -73,7 +66,7 @@ const LeftSide = () => {
                 </li>
                 <li>
                     <PopconfirmTemp
-                        title={'您确定要前进一次操作吗？'}
+                        title={'确定前进一次操作吗？'}
                         onConfirm={handleForwardEditor}
                     >
                         <ArrowRightOutlined />
@@ -81,32 +74,23 @@ const LeftSide = () => {
                 </li>
                 <li>
                     <PopconfirmTemp
-                        title={'是否将现有的设计布局及样式保存至本地？'}
+                        title={'是否将现有的画布内容保存至本地？'}
                         onConfirm={handleSaveStore}
-                        icon={<CheckCircleOutlined style={{ color: "green" }} />}
-                        okText="立即保存"
+                        okText="保存"
                     >
                         <DownloadOutlined />
                     </PopconfirmTemp>
                 </li>
                 <li>
                     <PopconfirmTemp
-                        title={'是否清空本地所保存的内容？'}
-                        onConfirm={handleClearStore}
-                        icon={<CheckCircleOutlined style={{ color: "green" }} />}
-                        okText="清空"
+                        title={'要清空所保存的哪项内容？'}
+                        showCancel={true}
+                        onConfirm={() => handleClearContent(true)}
+                        onCancel={() => handleClearContent()}
+                        okText="全部"
+                        cancelText="仅本地缓存"
                     >
                         <ClearOutlined />
-                    </PopconfirmTemp>
-                </li>
-                <li>
-                    <PopconfirmTemp
-                        title={'点击确定查看使用说明'}
-                        onConfirm={handleReadme}
-                        okText="确定"
-                        icon={<QuestionCircleOutlined style={{ color: "green" }} />}
-                    >
-                        <ExclamationCircleOutlined />
                     </PopconfirmTemp>
                 </li>
             </ul>
