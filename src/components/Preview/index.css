@@ -1,7 +1,16 @@
-.preview {
+.main {
+  width: 100%;
+  height: 100%;
+}
+.main .preview {
   position: relative;
-  background-color: #fff;
+}
+.static {
+  position: absolute;
 }
 .preview > * {
   position: absolute;
+}
+.preview-bgc {
+  background-color: #fff;
 }

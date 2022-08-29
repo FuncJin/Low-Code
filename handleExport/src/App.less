@@ -14,12 +14,25 @@ body {
     width: 100%;
     height: 100%;
 
-    .preview {
-        position: relative;
-        background-color: #fff;
+    .main {
+        width: 100%;
+        height: 100%;
 
-        .static {
-            position: absolute;
+        .preview {
+            position: relative;
         }
     }
+
+    .static {
+        position: absolute;
+    }
+
+}
+
+.preview>* {
+    position: absolute;
+}
+
+.preview-bgc {
+    background-color: #fff;
 }

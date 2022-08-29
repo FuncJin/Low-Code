@@ -1,7 +1,7 @@
 import { useState, useContext, useRef } from 'react'
 
 import context from '../../Context'
-import { Slot, processEvents, antMsg, screenDefaultWidth } from '../Libs/tool'
+import { Slot, processEvents, antMsg } from '../Libs/tool'
 import LookMe from './LookMe'
 
 import './index.css'
@@ -79,12 +79,7 @@ const Center = () => {
         setSelected(false)
     }
     return (
-        <div
-            className="center"
-            style={{
-                width: `${screenDefaultWidth.pc + 13}px`
-            }}
-        >
+        <div className="center" >
             <div
                 className="canvas"
                 ref={canvasRef}

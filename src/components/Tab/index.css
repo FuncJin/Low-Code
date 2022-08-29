@@ -25,6 +25,7 @@ body {
 .tab {
   height: 48px;
   margin-bottom: 1px;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,7 +43,6 @@ body {
 }
 .tab h4 {
   margin-bottom: 0;
-  padding-left: 10px;
 }
 .tab ul {
   margin-bottom: 0;
@@ -58,6 +58,9 @@ body {
 .tab ul button {
   margin-right: 10px;
   border-radius: 3px;
+}
+.file-export-ul {
+  list-style-type: none;
 }
 @keyframes bounce-body {
   0% {

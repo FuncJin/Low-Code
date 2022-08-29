@@ -7,7 +7,8 @@ const { compress } = require('./compress')
 // 处理写入文件的路径
 const url = './src/components/Preview/editor.jsx'
 const text = editor => `const editor = ${editor};export default editor;`
-const downloadUrl = 'https://funcjin.cn/zip/lowcode.zip'
+// https://funcjin.cn/zip/lowcode.zip
+const downloadUrl = 'http://localhost:9999/zip/lowcode.zip'
 
 // 开启命令行 > npm run-script build
 const go = () => new Promise(resolve => {
@@ -21,6 +22,7 @@ const sWin = { flag: true, text: '导出成功' }
 
 const handleExport = (req, res) => {
     const editor = req.body.editor.replace(/^'|'$/ig, '')
+    console.log('收到请求了~', editor)
     const handle = async err => {
         if (err) return res.send(sFai)
         const flag = await go()

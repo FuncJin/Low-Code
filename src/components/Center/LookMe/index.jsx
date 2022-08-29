@@ -26,7 +26,9 @@ const LookMe = ({ setHandOver, text }) => {
             className="look-me"
             onMouseMove={handleMouseMove}
             ref={ref}
-        >{text}</div>
+        >
+            {text}
+        </div>
     )
 }
 

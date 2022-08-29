@@ -5,12 +5,47 @@
     flex-grow: 2;
     overflow: auto;
 
+    .canvas-ruler {
+        width: 100%;
+        height: 100%;
+
+        &::before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: linear-gradient(0deg,
+                    black 0,
+                    black 1px,
+                    transparent 1px,
+                    transparent 100px),
+                linear-gradient(90deg,
+                    black 0,
+                    black 1px,
+                    transparent 1px,
+                    transparent 100px);
+            background-size: 50px 50px;
+        }
+    }
+
     .canvas {
         height: 100%;
         overflow: auto;
         margin: 0 auto;
         border-radius: 3px;
         background-color: #f8f8f8;
+        background: linear-gradient(0deg,
+                rgba(0, 0, 0, 0.1) 0,
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 100px),
+            linear-gradient(90deg,
+                rgba(0, 0, 0, 0.02) 0,
+                rgba(0, 0, 0, 0.02) 1px,
+                rgb(255, 255, 255, 0.75) 1px,
+                rgb(255, 255, 255, 0.75) 100px);
+        background-size: 50px 50px;
         box-shadow: 0 0 13px 2px #00000014;
         position: relative;
         transition: all 0.6s;
@@ -43,6 +78,7 @@
         }
 
     }
+
 
     .static {
         position: absolute;

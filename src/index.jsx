@@ -6,7 +6,7 @@ import App from './App'
 import NotFound from './components/NotFound'
 import Preview from './components/Preview'
 
-console.log('GitHub', 'https://github.com/FuncJin/Low-Code')
+console.log('GitHub: https://github.com/FuncJin/Low-Code')
 
 const _vm = (
   <React.StrictMode>

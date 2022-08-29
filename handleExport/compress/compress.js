@@ -1,7 +1,7 @@
 const fs = require('fs')
 const archiver = require('archiver')
 
-// 输出路径
+// 压缩后的输出路径
 const outputDir = './zip'
 
 // 压缩文件

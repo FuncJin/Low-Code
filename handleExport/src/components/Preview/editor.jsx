@@ -1,1 +1,1 @@
-const editor = [{"afterRender":"通用 Title","style":{},"originStyle":{"children":"标题"},"events":{},"position":{"top":183,"left":496}}];export default editor;
+const editor = [{"afterRender":"通用 Title","style":{},"originStyle":{"children":"标题"},"events":{},"position":{"top":155,"left":727}}];export default editor;
