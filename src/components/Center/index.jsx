@@ -7,7 +7,7 @@ import LookMe from './LookMe'
 import './index.css'
 
 const Center = () => {
-    const { editor, freshEl, setEditor, setFreshEl, setCurSelectedEl, canvasWidth } = useContext(context)
+    const { editor, freshEl, setEditor, setFreshEl, setCurSelectedEl, canvasWidth, rulerSwitch } = useContext(context)
     // 记录最后的位置，防止发生位置错乱的情况
     const [lastPosition, setLastPosition] = useState({ top: 0, left: 0 })
     // 存储将要获取的浮层相关方法
@@ -81,7 +81,7 @@ const Center = () => {
     return (
         <div className="center" >
             <div
-                className="canvas"
+                className={`canvas ${rulerSwitch ? 'canvas-ruler' : ''}`}
                 ref={canvasRef}
                 style={{ width: `${canvasWidth}px` }}
                 onMouseDown={handleMouseDown}

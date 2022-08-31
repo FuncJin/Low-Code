@@ -30,6 +30,8 @@ const App = () => {
   const [curSelectedEl, handleCurSelectedEl] = useState(defaultCurSideDrag)
   // 导出与下载，true代表导出；false代表下载
   const [status, setStatus] = useState(true)
+  // 画布标尺开关
+  const [rulerSwitch, setRulerSwitch] = useState(true)
   const { Provider } = context
   // 拦截所有修改editor的操作，并追加至历史记录
   const setEditor = oneSet => {
@@ -75,6 +77,7 @@ const App = () => {
   const topOperations = {
     status, setStatus,
     editor, setEditor, freshEl, setFreshEl, canvasWidth, setCanvasWidth, curSelectedEl, setCurSelectedEl,
+    rulerSwitch, setRulerSwitch,
     handleBackEditor, handleForwardEditor, handleSaveStore, handleClearContent,
   }
   return (

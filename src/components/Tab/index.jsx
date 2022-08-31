@@ -4,6 +4,7 @@ import { DesktopOutlined, MobileOutlined } from '@ant-design/icons'
 
 import File from './File'
 import Operations from './Operations'
+import View from './View'
 import context from '../../Context'
 import { screenDefaultWidth } from '../Libs/tool'
 
@@ -39,6 +40,9 @@ const Tab = () => {
                 </li>
             </ul>
             <ul>
+                <li>
+                    <View />
+                </li>
                 <li>
                     <Operations />
                 </li>

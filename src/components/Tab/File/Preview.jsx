@@ -2,9 +2,9 @@ import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'antd'
 
-import context from '../../Context'
-import store from '../../Store'
-import { antMsg } from '../Libs/tool'
+import context from '../../../Context'
+import store from '../../../Store'
+import { antMsg } from '../../Libs/tool'
 
 const Preview = () => {
     const { editor } = useContext(context)
